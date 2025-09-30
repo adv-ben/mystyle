@@ -39,7 +39,7 @@ def line_plot(x,
         yaxis=dict(fixedrange=True)
     )
 
-    fig.show()
+    return fig
 
 def multi_line_plot(x_lines, 
                     y_lines,
@@ -87,4 +87,4 @@ def multi_line_plot(x_lines,
         yaxis=dict(fixedrange=True)
     )
 
-    fig.show()
+    return fig
