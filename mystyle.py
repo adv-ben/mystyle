@@ -98,6 +98,7 @@ def time_format(time_in_seconds):
     num_mins = math.floor(time_in_seconds // 60)
     time_in_seconds -= num_mins * 60
     num_secs = math.floor(time_in_seconds)
+    
 
     if num_yrs > 0:
         return f"{num_yrs}y {num_days}d"
@@ -108,12 +109,12 @@ def time_format(time_in_seconds):
     elif num_mins > 0:
         return f"{num_mins}m {num_secs}s"
     elif time_in_seconds >= 1:
-        return f"{time_in_seconds:.2f}s"
+        return f"{time_in_seconds:.3g}s"
     elif time_in_seconds >= 1e-3:
-        return f"{(1e3 * time_in_seconds):.2f}ms"
+        return f"{(1e3 * time_in_seconds):.3g}ms"
     elif time_in_seconds >= 1e-6:
-        return f"{(1e6 * time_in_seconds):.2f}us"
+        return f"{(1e6 * time_in_seconds):.3g}us"
     elif time_in_seconds >= 1e-9:
-        return f"{(1e9 * time_in_seconds):.2f}ns"
+        return f"{(1e9 * time_in_seconds):.3g}ns"
     else:
         return f"0ns"
