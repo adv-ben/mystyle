@@ -1,5 +1,6 @@
 import plotly.express as px
 import pandas as pd
+import math
 
 ###
 # Ben's styles for plotly
@@ -10,8 +11,6 @@ import pandas as pd
 # Matplotlib style
 # Upload to github
 ###
-
-
 
 def line_plot(x, 
               y, 
@@ -88,3 +87,33 @@ def multi_line_plot(x_lines,
     )
 
     return fig
+
+def time_format(time_in_seconds):
+    num_yrs = math.floor(time_in_seconds // (86400 * 365.2425))
+    time_in_seconds -= num_yrs * (86400 * 365.2425)
+    num_days = math.floor(time_in_seconds // 86400)
+    time_in_seconds -= num_days * 86400
+    num_hrs = math.floor(time_in_seconds // 3600)
+    time_in_seconds -= num_hrs * 3600
+    num_mins = math.floor(time_in_seconds // 60)
+    time_in_seconds -= num_mins * 60
+    num_secs = math.floor(time_in_seconds)
+
+    if num_yrs > 0:
+        return f"{num_yrs}y {num_days}d"
+    elif num_days > 0:
+        return f"{num_days}d {num_hrs}h"
+    elif num_hrs > 0:
+        return f"{num_hrs}h {num_mins}m"
+    elif num_mins > 0:
+        return f"{num_mins}m {num_secs}s"
+    elif time_in_seconds >= 1:
+        return f"{time_in_seconds:.2f}s"
+    elif time_in_seconds >= 1e-3:
+        return f"{(1e3 * time_in_seconds):.2f}ms"
+    elif time_in_seconds >= 1e-6:
+        return f"{(1e6 * time_in_seconds):.2f}us"
+    elif time_in_seconds >= 1e-9:
+        return f"{(1e9 * time_in_seconds):.2f}ns"
+    else:
+        return f"0ns"
