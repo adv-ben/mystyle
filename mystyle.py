@@ -1,6 +1,7 @@
 import plotly.express as px
 import pandas as pd
 import math
+import matplotlib.pyplot as plt
 
 ###
 # Ben's styles for plotly
@@ -87,6 +88,36 @@ def multi_line_plot(x_lines,
     )
 
     return fig
+
+def multi_line_plot_mpl(x_lines, 
+                    y_lines,
+                    yaxis_names, 
+                    title = "Default Title",
+                    xaxis_title = "x",
+                    yaxis_title = "y",
+                    return_fig_ax=False,
+                    log=None):
+    fig, ax = plt.subplots()
+
+    if log == "x":
+        ax.semilogx()
+    if log == "y":
+        ax.semilogy()
+    if log == "xy":
+        ax.loglog()
+
+    for i in range(len(x_lines)):
+        plt.plot(x_lines[i], y_lines[i], label=yaxis_names[i])
+    ax.set_title(title)
+    ax.set_xlabel(xaxis_title)
+    ax.set_ylabel(yaxis_title)
+    ax.grid(True)
+    ax.legend()
+
+    if return_fig_ax:
+        return fig, ax
+    else:
+        plt.show()
 
 def time_format(time_in_seconds):
     num_yrs = math.floor(time_in_seconds // (86400 * 365.2425))
