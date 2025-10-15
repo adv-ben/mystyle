@@ -139,11 +139,11 @@ def time_format(time_in_seconds):
     elif num_mins > 0:
         return f"{num_mins}m {num_secs}s"
     elif time_in_seconds >= 10:
-        time_in_seconds = math.floor(10 * time_in_seconds) / 10
+        time_in_seconds = math.floor(10 * time_in_seconds)
         if time_in_seconds % 10 == 0:
-            return f"{time_in_seconds:.3g}.0s"
+            return f"{time_in_seconds / 10:.3g}.0s"
         else:
-            return f"{time_in_seconds:.3g}s"
+            return f"{time_in_seconds / 10:.3g}s"
     elif time_in_seconds >= 1:
         return f"{time_in_seconds:.3g}s"
     elif time_in_seconds >= 1e-3:
